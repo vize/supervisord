@@ -31,7 +31,7 @@ echo "Version:" $(supervisord -v)
 echo "----------------------------------------"
 echo "[Installing Dependencies]"
 echo "----------------------------------------"
-curl -s http://getcomposer.org/installer | php
+[ -f composer.phar ] || curl -s http://getcomposer.org/installer | php
 php composer.phar update
 php composer.phar install
 echo
