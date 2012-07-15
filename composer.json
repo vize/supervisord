@@ -1,0 +1,27 @@
+{
+    "name": "missinglink/supervisord",
+    "version": "0.0.1",
+    "type": "library", 
+    "description": "PHP frontend for Supervisord daemon manager", 
+    "keywords": ["Daemon", "Manager", "Supervisord"], 
+    "website": "https://github.com/missinglink/supervisord",
+    "repository": "https://github.com/missinglink/supervisord",
+    
+    "authors": [
+        {
+            "name": "Peter Johnson",
+            "email": "insomnia@rcpt.at"
+        }
+    ],
+    
+    "autoload": {
+        "psr-0": {
+            "Supervisord": "src"
+        }
+    }, 
+    
+    "require": {
+        "php": ">=5.3",
+        "ext-xmlrpc": "*"
+    }
+}

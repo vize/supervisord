@@ -1,0 +1,7 @@
+; The below sample group section shows all possible group values,
+; create one or more 'real' group: sections to create "heterogeneous"
+; process groups.
+
+;[group:thegroupname]
+;programs=progname1,progname2  ; each refers to 'x' in [program:x] definitions
+;priority=999                  ; the relative start priority (default 999)
