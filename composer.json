@@ -20,16 +20,8 @@
         }
     },
     
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/ncuesta/Clinner"
-        }
-    ],
-    
     "require": {
         "php": ">=5.3",
-        "ncuesta/clinner": "dev-master",
         "ext-xmlrpc": "*"
     }
 }
