@@ -2,8 +2,6 @@
 
 namespace Supervisord;
 
-use Visor\Cli\Shell;
-
 class Server
 {
     private $config, $shell;
