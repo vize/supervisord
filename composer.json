@@ -1,11 +1,11 @@
 {
-    "name": "missinglink/supervisord",
+    "name": "vize/supervisord",
     "version": "0.0.1",
     "type": "library", 
     "description": "PHP frontend for Supervisord daemon manager", 
     "keywords": ["Daemon", "Manager", "Supervisord"], 
-    "website": "https://github.com/missinglink/supervisord",
-    "repository": "https://github.com/missinglink/supervisord",
+    "website": "https://github.com/vize/supervisord",
+    "repository": "https://github.com/vize/supervisord",
     
     "authors": [
         {
@@ -18,10 +18,18 @@
         "psr-0": {
             "Supervisord": "src"
         }
-    }, 
+    },
+    
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/ncuesta/Clinner"
+        }
+    ],
     
     "require": {
         "php": ">=5.3",
+        "ncuesta/clinner": "dev-master",
         "ext-xmlrpc": "*"
     }
 }
