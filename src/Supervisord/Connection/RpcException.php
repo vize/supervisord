@@ -1,6 +1,6 @@
 <?php
 
-namespace Supervisord;
+namespace Supervisord\Connection;
 
 use \RuntimeException;
 

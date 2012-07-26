@@ -1,8 +1,8 @@
 <?php
 
-namespace Supervisord;
+namespace Supervisord\Connection;
 
-class InetConnection extends ConnectionAbstract implements Connection
+class InetConnection extends ConnectionAbstract implements \Supervisord\Connection
 {
     public function call( $method, $params = array() )
     {

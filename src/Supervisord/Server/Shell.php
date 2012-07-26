@@ -1,6 +1,6 @@
 <?php
 
-namespace Supervisord;
+namespace Supervisord\Server;
 
 class Shell
 {
@@ -11,7 +11,7 @@ class Shell
         
         if( $exitCode > 0 )
         {
-            throw new CliException( isset( $lines[ 0 ] ) ? $lines[ 0 ] : $output, $exitCode );
+            throw new ShellException( isset( $lines[ 0 ] ) ? $lines[ 0 ] : $output, $exitCode );
         }
         
         return $output;

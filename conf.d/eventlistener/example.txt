@@ -33,5 +33,5 @@
 ;environment=A=1,B=2           ; process environment additions
 ;serverurl=AUTO                ; override serverurl computation (childutils)
 
-;stdout_logfile=%(here)s/log/listener_%(group_name)s:%(program_name)s_stdout.log
-;stderr_logfile=%(here)s/log/listener_%(group_name)s:%(program_name)s_stderr.log
+;stdout_logfile=%(here)s/tmp/listener_%(group_name)s:%(program_name)s_stdout.log
+;stderr_logfile=%(here)s/tmp/listener_%(group_name)s:%(program_name)s_stderr.log

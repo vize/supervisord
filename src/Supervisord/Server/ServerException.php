@@ -1,6 +1,6 @@
 <?php
 
-namespace Supervisord;
+namespace Supervisord\Server;
 
 use \RuntimeException;
 

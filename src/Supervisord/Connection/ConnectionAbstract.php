@@ -1,8 +1,8 @@
 <?php
 
-namespace Supervisord;
+namespace Supervisord\Connection;
 
-abstract class ConnectionAbstract implements Connection
+abstract class ConnectionAbstract implements \Supervisord\Connection
 {
     protected $dsn;
     

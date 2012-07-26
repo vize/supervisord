@@ -12,7 +12,7 @@ echo "[Installing Supervisor]"
 echo "----------------------------------------"
 sudo apt-get install -y python-setuptools
 sudo easy_install supervisor
-[ -d log ] || mkdir log && chmod 777 log
+[ -d tmp ] || mkdir tmp && chmod 777 tmp
 
 echo "----------------------------------------"
 echo "[Installing Twiddler]"
