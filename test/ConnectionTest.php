@@ -53,10 +53,10 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         }
         
         $socketPath = $this->config['unix_http_server']['file'];
-        $socketIsAbsolute = ( '/' == substr( $socketPath, 0, 1 ) );
+        $socketPathIsAbsolute = ( '/' == substr( $socketPath, 0, 1 ) );
         
         $connection = new Connection\SocketConnection( sprintf( 'unix://%s',
-            $socketIsAbsolute
+            $socketPathIsAbsolute
                 ? $socketPath
                 : sprintf( '%s/%s', $this->configFile->getPath(), $socketPath )
         ));
