@@ -2,3 +2,4 @@ supervisord.pid
 composer.phar
 vendor
 tmp/*
+test/coverage
