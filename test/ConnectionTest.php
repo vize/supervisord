@@ -52,9 +52,9 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped( 'Unix Server Not Configured' );
         }
         
-        $socketPath = $this->config['unix_http_server']['file'];
-        
-        $connection = new Connection\SocketConnection( sprintf( 'unix://%s', $socketPath ) );
+        $connection = new Connection\SocketConnection( sprintf( 'unix://%s',
+            $this->config['unix_http_server']['file'] )
+        );
         
         $client = new Client( $connection );
         
