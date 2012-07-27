@@ -35,7 +35,20 @@ class Config extends \ArrayObject
                     }
                 }
                 
-                $this[ $section ][ trim( $match[ 'key' ] ) ] = trim( strstr( $match[ 'value' ] . ';', ';', true ) );
+                // Parse Single Line
+                else
+                {
+                    $key = trim( $match[ 'key' ] );
+                    $val = trim( strstr( $match[ 'value' ] . ';', ';', true ) );
+                    
+                    // Resolve Relative Paths
+                    if( preg_match( '_(file|directory)_', $key ) )
+                    {
+                        $val = preg_match( '_(^/)_', $val ) ? $val : sprintf( '%s/%s', $file->getPath(), $val );
+                    }
+                    
+                    $this[ $section ][ $key ] = $val;
+                }
             }
         }
     }
