@@ -17,13 +17,24 @@ class Config extends \ArrayObject
             if( ';' === substr( $line, 0, 1 ) ){ continue; }
             
             // Parse Sections
-            if( preg_match( '_^\[(?<section>.+)\]_', $line, $match ) ){
+            if( preg_match( '_^\[(?<section>.+)\]_', $line, $match ) )
+            {
                 $section = $match[ 'section' ];
                 $this[ $section ] = array();
             }
 
             // Parse Settings
-            else if( preg_match( '_^(?<key>.+)=(?<value>.+)_', $line, $match ) ){
+            else if( preg_match( '_^(?<key>.+)=(?<value>.+)_', $line, $match ) )
+            {
+                // Handle Includes
+                if( 'include' === $section && 'file' === trim( $match[ 'key' ] ) )
+                {
+                    foreach( new \GlobIterator( trim( $match[ 'value' ] ) ) as $include )
+                    {
+                        $this->import( $include, $section );
+                    }
+                }
+                
                 $this[ $section ][ trim( $match[ 'key' ] ) ] = trim( strstr( $match[ 'value' ] . ';', ';', true ) );
             }
         }

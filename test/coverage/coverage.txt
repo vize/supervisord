@@ -1,23 +1,21 @@
 
 
 Code Coverage Report 
-  2012-07-26 23:49:45
+  2012-07-27 02:10:04
 
  Summary: 
-  Classes: 9.09% (1/11)
-  Methods: 17.78% (8/45)
-  Lines:   51.47% (70/136)
+  Classes: 10.00% (1/10)
+  Methods: 18.18% (8/44)
+  Lines:   49.21% (62/126)
 
 \Supervisord::Client
-  Methods:   6.90% ( 2/29)   Lines:   9.09% (  3/ 33)
+  Methods:  10.34% ( 3/29)   Lines:  12.12% (  4/ 33)
 \Supervisord::Config
-  Methods:  33.33% ( 1/ 3)   Lines:  54.55% ( 12/ 22)
+  Methods:  33.33% ( 1/ 3)   Lines:  53.33% ( 16/ 30)
 \Supervisord\Connection::ConnectionAbstract
   Methods: 100.00% ( 2/ 2)   Lines:  57.14% (  8/ 14)
 \Supervisord\Connection::InetConnection
   Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  9/  9)
-\Supervisord\Connection::SocketConnection
-  Methods: 100.00% ( 1/ 1)   Lines:  72.22% ( 13/ 18)
 \Supervisord\Server::Local
   Methods:  62.50% ( 5/ 8)   Lines:  64.29% ( 18/ 28)
 \Supervisord\Server::Shell
