@@ -2,21 +2,14 @@
 
 namespace Supervisord\Connection\Response;
 
-use \Supervisord\Connection\ConnectionException;
+use \Supervisord\Connection\SocketException;
 use \Supervisord\Connection\RpcException;
 
 class Validator
 {
-    protected $xmlRpc;
-    
-    public function __construct( XmlRpc $xmlRpc )
+    public function validate( XmlRpc $xmlRpc )
     {
-        $this->xmlRpc = $xmlRpc;
-    }
-    
-    private function validate()
-    {
-        $data = $this->xmlRpc->getData();
+        $data = $xmlRpc->getData();
         
         // Validate Response
         if( is_array( $data ) && isset( $data[ 'faultString' ], $data[ 'faultCode' ] ) )
@@ -24,19 +17,14 @@ class Validator
             throw new RpcException(
                 $data[ 'faultString' ],
                 $data[ 'faultCode' ],
-                new ConnectionException( sprintf( 'Failed to execute command' ) )
+                new SocketException( sprintf( 'Failed to execute command' ) )
             );
         }
 
         // Handle Empty Response
         else if( null === $data )
         {
-            throw new ConnectionException( sprintf( 'Failed to connect to server' ) );
+            throw new SocketException( sprintf( 'Failed to connect to server' ) );
         }
-    }
-    
-    public function getData()
-    {
-        return $this->xmlRpc->getData();
     }
 }
