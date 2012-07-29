@@ -15,7 +15,7 @@ class StreamConnection implements \Supervisord\Connection
      * Query supervisord
      * 
      * @param Request\XmlRpc $xmlRpc
-     * @return \Response\XmlRpc 
+     * @return Response\XmlRpc 
      */
     public function call( Request\XmlRpc $xmlRpc )
     {  
