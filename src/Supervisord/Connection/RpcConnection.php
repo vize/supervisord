@@ -4,50 +4,55 @@ namespace Supervisord\Connection;
 
 class RpcConnection implements \Supervisord\Connection
 {
-    protected $dsn;
+    protected $socket;
     
     public function __construct( $dsn )
     {
-        $this->dsn = $dsn;
-        $this->call( 'supervisor.getSupervisorVersion' ); // Confirm server is active
+        $this->socket = stream_socket_client( $dsn, $errno, $errstr );
+    }
+    
+    public function __destruct()
+    {
+        fclose( $this->socket );
     }
     
     public function call( $method, $params = array() )
     {
-        $socket = stream_socket_client( $this->dsn, $errno, $errstr );
+        // Encode RPC
         $xmlRequest = xmlrpc_encode_request( $method, $params );
         
+        // Encode HTTP
         $httpRequest = sprintf( "POST /RPC2 HTTP/1.1\r\nContent-Length: %s\r\n\r\n%s", 
             mb_strlen( $xmlRequest ),
             $xmlRequest
         );
         
-        fwrite( $socket, $httpRequest, mb_strlen( $httpRequest ) );
+        // Read & Write from socket
+        fwrite( $this->socket, $httpRequest, mb_strlen( $httpRequest ) );
+        $httpResponse = fread( $this->socket, 4096 );
         
-        $httpResponse = fread( $socket, 4096 );
+        // Decode HTTP
         $xmlResponse = trim( strstr( $httpResponse, "\r\n\r\n" ) );
+        
+        // Decode RPC
         $rpcResponse = xmlrpc_decode( $xmlResponse );
         
-        fclose( $socket );
-        $this->validateResponse( $rpcResponse, $method, $params );
-
-        return $rpcResponse;
-    }
-
-    protected function validateResponse( $response, $method, array $params )
-    {
-        if( null === $response )
-        {
-            throw new ConnectionException( sprintf( 'Could not connect to server at %s', $this->dsn ) );
-        }
-        
-        else if( is_array( $response ) && isset( $response[ 'faultString' ], $response[ 'faultCode' ] ) )
+        // Validate Response
+        if( is_array( $rpcResponse ) && isset( $rpcResponse[ 'faultString' ], $rpcResponse[ 'faultCode' ] ) )
         {
             throw new RpcException(
-                $response[ 'faultString' ],
-                $response[ 'faultCode' ],
+                $rpcResponse[ 'faultString' ],
+                $rpcResponse[ 'faultCode' ],
                 new ConnectionException( sprintf( 'Failed to execute method: %s', $method ) )
             );
         }
+
+        // Handle Empty Response
+        else if( null === $rpcResponse )
+        {
+            throw new ConnectionException( sprintf( 'Failed to connect to server' ) );
+        }
+
+        return $rpcResponse;
     }
 }
