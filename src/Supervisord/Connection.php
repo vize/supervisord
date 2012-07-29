@@ -30,5 +30,11 @@ interface Connection
     const CLEAR_BAD_NAME = 2050;
     const CLEAR_FAILED = 2051;
     
+    /**
+     * Query supervisord
+     * 
+     * @param Request\XmlRpc $xmlRpc
+     * @return \Response\XmlRpc 
+     */
     public function call( Request\XmlRpc $xmlRpc );
 }

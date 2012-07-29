@@ -33,7 +33,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             $this->config['inet_http_server']['port']
         );
         
-        $connection = new Connection\RpcConnection( $transport );
+        $connection = new Connection\SocketConnection( $transport );
         
         $client = new Client( $connection );
         
@@ -69,7 +69,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             sprintf( 'unix://%s', $this->config['unix_http_server']['file'] )
         );
                 
-        $connection = new Connection\RpcConnection( $transport );
+        $connection = new Connection\SocketConnection( $transport );
         
         $client = new Client( $connection );
         

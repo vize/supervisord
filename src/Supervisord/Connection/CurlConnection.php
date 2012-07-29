@@ -11,6 +11,12 @@ class CurlConnection implements \Supervisord\Connection
         $this->dsn = $dsn;
     }
     
+    /**
+     * Query supervisord
+     * 
+     * @param Request\XmlRpc $xmlRpc
+     * @return \Response\XmlRpc 
+     */
     public function call( Request\XmlRpc $xmlRpc )
     {
         $curl = curl_init();
@@ -22,9 +28,6 @@ class CurlConnection implements \Supervisord\Connection
         
         $response = new Response\XmlRpc( curl_exec( $curl ) );
         curl_close( $curl );
-        
-        $validator = new Response\Validator;
-        $validator->validate( $response );
 
         return $response;
     }

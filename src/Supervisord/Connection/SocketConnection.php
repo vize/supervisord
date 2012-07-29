@@ -2,7 +2,7 @@
 
 namespace Supervisord\Connection;
 
-class RpcConnection implements \Supervisord\Connection
+class SocketConnection implements \Supervisord\Connection
 {
     protected $socket;
     
@@ -23,9 +23,6 @@ class RpcConnection implements \Supervisord\Connection
 
         $http = new Response\Http( $this->socket->recv() );
         $response = new Response\XmlRpc( $http->getBody() );
-        
-        $validator = new Response\Validator;
-        $validator->validate( $response );
 
         return $response;
     }

@@ -13,6 +13,24 @@ class XmlRpc
     
     public function getData()
     {
-        return xmlrpc_decode( $this->xmlString );
+        $response = xmlrpc_decode( $this->xmlString );
+        
+        // Validate Response
+        if( is_array( $response ) && isset( $response[ 'faultString' ], $response[ 'faultCode' ] ) )
+        {
+            throw new \DomainException(
+                $response[ 'faultString' ],
+                $response[ 'faultCode' ],
+                new SocketException( sprintf( 'Failed to execute command' ) )
+            );
+        }
+
+        // Handle Empty Response
+        else if( null === $response )
+        {
+            throw new SocketException( sprintf( 'Failed to connect to server' ) );
+        }
+        
+        return $response;
     }
 }
