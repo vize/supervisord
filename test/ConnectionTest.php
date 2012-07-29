@@ -29,9 +29,9 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped( 'Inet Server Not Configured' );
         }
         
-        $connection = new Connection\RpcConnection(
+        $connection = new Connection\RpcConnection( new Connection\Socket(
             $this->config['inet_http_server']['port']
-        );
+        ));
         
         $client = new Client( $connection );
         
@@ -45,10 +45,12 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         {
             $this->markTestSkipped( 'Unix Server Not Configured' );
         }
-        
-        $connection = new Connection\RpcConnection(
+
+        $transport = new Connection\Socket(
             sprintf( 'unix://%s', $this->config['unix_http_server']['file'] )
         );
+                
+        $connection = new Connection\RpcConnection( $transport );
         
         $client = new Client( $connection );
         

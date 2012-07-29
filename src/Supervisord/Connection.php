@@ -2,6 +2,8 @@
 
 namespace Supervisord;
 
+use \Supervisord\Connection\Request;
+
 interface Connection
 {
     const UNKNOWN_METHOD = 1;
@@ -28,5 +30,5 @@ interface Connection
     const CLEAR_BAD_NAME = 2050;
     const CLEAR_FAILED = 2051;
     
-    public function call( $method, $params = array() );
+    public function call( Request\XmlRpc $xmlRpc );
 }
