@@ -15,16 +15,10 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
 
         $this->server = new Server\Local( $this->config );
         $this->server->start();
-        
-        sleep( 1 ); // Wait for supervisord to start
-        
-        //$this->timer = microtime( true );
     }
     
     public function tearDown()
     {
-        //printf( 'Total Time: %.2fs', microtime( true ) - $this->timer );
-        
         $this->server->stop();
     }
     

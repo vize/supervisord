@@ -7,17 +7,22 @@ class SocketConnection extends ConnectionAbstract implements \Supervisord\Connec
     public function call( $method, $params = array() )
     {
         $socket = stream_socket_client( $this->dsn, $errno, $errstr );
-        stream_set_blocking( $socket, 0 );
+        $xmlRequest = xmlrpc_encode_request( $method, $params );
         
-        $message = sprintf( "%s\0", xmlrpc_encode_request( $method, $params ) );
-        fwrite( $socket, $message, strlen( $message ) );
+        $httpRequest = sprintf( "POST /RPC2 HTTP/1.1\r\nContent-Length: %s\r\n\r\n%s", 
+            mb_strlen( $xmlRequest ),
+            $xmlRequest
+        );
         
-        $response = fread( $socket, 4096 );
-        $xmlResponse = xmlrpc_decode( $response );
+        fwrite( $socket, $httpRequest, mb_strlen( $httpRequest ) );
+        
+        $httpResponse = fread( $socket, 4096 );
+        $xmlResponse = trim( strstr( $httpResponse, "\r\n\r\n" ) );
+        $rpcResponse = xmlrpc_decode( $xmlResponse );
         
         fclose( $socket );
-        $this->validateResponse( $xmlResponse, $method, $params );
+        $this->validateResponse( $rpcResponse, $method, $params );
 
-        return $xmlResponse;
+        return $rpcResponse;
     }
 }
