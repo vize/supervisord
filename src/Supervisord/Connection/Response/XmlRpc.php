@@ -4,15 +4,15 @@ namespace Supervisord\Connection\Response;
 
 class XmlRpc
 {
-    protected $http;
+    protected $xmlString;
     
-    public function __construct( Http $http )
+    public function __construct( $xmlString )
     {
-        $this->http = $http;
+        $this->xmlString = $xmlString;
     }
     
     public function getData()
     {
-        return xmlrpc_decode( $this->http );
+        return xmlrpc_decode( $this->xmlString );
     }
 }

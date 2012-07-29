@@ -22,7 +22,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $this->server->stop();
     }
     
-    public function testInetConnection()
+    public function testInetConnection_Stream()
     {
         if( !isset( $this->config['inet_http_server'], $this->config['inet_http_server']['port'] ) )
         {
@@ -39,7 +39,24 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals( array(), $client->getAllProcessInfo() );
     }
     
-    public function testSocketConnection()
+    public function testInetConnection_Curl()
+    {
+        if( !isset( $this->config['inet_http_server'], $this->config['inet_http_server']['port'] ) )
+        {
+            $this->markTestSkipped( 'Inet Server Not Configured' );
+        }
+        
+        $connection = new Connection\CurlConnection(
+            sprintf( 'http://%s/RPC2', $this->config['inet_http_server']['port'] )
+        );
+        
+        $client = new Client( $connection );
+        
+        $this->assertEquals( '3.0a12', $client->getSupervisorVersion() );
+        $this->assertEquals( array(), $client->getAllProcessInfo() );
+    }
+    
+    public function testUnixSocketConnection_Stream()
     {
         if( !isset( $this->config['unix_http_server'], $this->config['unix_http_server']['file'] ) )
         {

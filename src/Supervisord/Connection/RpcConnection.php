@@ -20,12 +20,9 @@ class RpcConnection implements \Supervisord\Connection
     public function call( Request\XmlRpc $xmlRpc )
     {  
         $this->socket->send( new Request\Http( $xmlRpc ) );
-        
-        $response = new Response\XmlRpc(
-            new Response\Http(
-                $this->socket->recv()
-            )
-        );
+
+        $http = new Response\Http( $this->socket->recv() );
+        $response = new Response\XmlRpc( $http->getBody() );
         
         $validator = new Response\Validator;
         $validator->validate( $response );

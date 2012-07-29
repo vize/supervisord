@@ -11,7 +11,7 @@ class Http
         $this->http = $http;
     }
     
-    public function __toString()
+    public function getBody()
     {
         return trim( strstr( $this->http, "\r\n\r\n" ) );
     }
