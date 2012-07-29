@@ -29,9 +29,11 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped( 'Inet Server Not Configured' );
         }
         
-        $connection = new Connection\RpcConnection( new Connection\Socket(
+        $transport = new Connection\Socket(
             $this->config['inet_http_server']['port']
-        ));
+        );
+        
+        $connection = new Connection\RpcConnection( $transport );
         
         $client = new Client( $connection );
         
