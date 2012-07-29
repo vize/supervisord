@@ -2,6 +2,8 @@
 
 namespace Supervisord\Connection\Response;
 
+use \Supervisord\Connection\StreamException;
+
 class XmlRpc
 {
     protected $xmlString;
@@ -21,14 +23,14 @@ class XmlRpc
             throw new \DomainException(
                 $response[ 'faultString' ],
                 $response[ 'faultCode' ],
-                new SocketException( sprintf( 'Failed to execute command' ) )
+                new StreamException( sprintf( 'Failed to execute command' ) )
             );
         }
 
         // Handle Empty Response
         else if( null === $response )
         {
-            throw new SocketException( sprintf( 'Failed to connect to server' ) );
+            throw new StreamException( sprintf( 'Failed to connect to server' ) );
         }
         
         return $response;

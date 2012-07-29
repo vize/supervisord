@@ -2,13 +2,13 @@
 
 namespace Supervisord\Connection;
 
-class SocketConnection implements \Supervisord\Connection
+class StreamConnection implements \Supervisord\Connection
 {
-    protected $socket;
+    protected $stream;
     
-    public function __construct( Socket $socket )
+    public function __construct( Stream $socket )
     {
-        $this->socket = $socket;
+        $this->stream = $socket;
     }
     
     /**
@@ -19,9 +19,9 @@ class SocketConnection implements \Supervisord\Connection
      */
     public function call( Request\XmlRpc $xmlRpc )
     {  
-        $this->socket->send( new Request\Http( $xmlRpc ) );
+        $this->stream->send( new Request\Http( $xmlRpc ) );
 
-        $http = new Response\Http( $this->socket->recv() );
+        $http = new Response\Http( $this->stream->recv() );
         $response = new Response\XmlRpc( $http->getBody() );
 
         return $response;

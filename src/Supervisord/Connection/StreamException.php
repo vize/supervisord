@@ -4,7 +4,7 @@ namespace Supervisord\Connection;
 
 use \RuntimeException;
 
-class SocketException extends RuntimeException
+class StreamException extends RuntimeException
 {
     
 }

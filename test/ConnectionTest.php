@@ -2,6 +2,10 @@
 
 namespace Supervisord;
 
+use \Supervisord\Connection\Stream;
+use \Supervisord\Connection\StreamConnection;
+use \Supervisord\Connection\CurlConnection;
+
 class ConnectionTest extends \PHPUnit_Framework_TestCase
 {
     private $configFile;
@@ -29,11 +33,11 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped( 'Inet Server Not Configured' );
         }
         
-        $transport = new Connection\Socket(
+        $transport = new Stream(
             $this->config['inet_http_server']['port']
         );
         
-        $connection = new Connection\SocketConnection( $transport );
+        $connection = new StreamConnection( $transport );
         
         $client = new Client( $connection );
         
@@ -48,7 +52,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped( 'Inet Server Not Configured' );
         }
         
-        $connection = new Connection\CurlConnection(
+        $connection = new CurlConnection(
             sprintf( 'http://%s/RPC2', $this->config['inet_http_server']['port'] )
         );
         
@@ -58,18 +62,18 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals( array(), $client->getAllProcessInfo() );
     }
     
-    public function testUnixSocketConnection_Stream()
+    public function testUnixStreamConnection_Stream()
     {
         if( !isset( $this->config['unix_http_server'], $this->config['unix_http_server']['file'] ) )
         {
             $this->markTestSkipped( 'Unix Server Not Configured' );
         }
 
-        $transport = new Connection\Socket(
+        $transport = new Stream(
             sprintf( 'unix://%s', $this->config['unix_http_server']['file'] )
         );
                 
-        $connection = new Connection\SocketConnection( $transport );
+        $connection = new StreamConnection( $transport );
         
         $client = new Client( $connection );
         

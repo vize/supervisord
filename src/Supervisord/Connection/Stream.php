@@ -2,7 +2,7 @@
 
 namespace Supervisord\Connection;
 
-class Socket
+class Stream
 {
     protected $sock;
     
