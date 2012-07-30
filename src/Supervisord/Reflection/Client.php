@@ -33,12 +33,14 @@ class Client
             $docblock = implode( "\n", $docblock );
             $docblock = preg_replace( '/(@return|@param) (struct)/', '$1 array', $docblock );
 
+            $params = $this->parseParams( $docblock );
+            
             $php .= sprintf( $this->loadView( 'function' ),
                 $method,
                 $docblock,
                 trim( strstr( $method, '.' ), '.' ),
                 $this->parseParams( $docblock, true ),
-                sprintf( $this->loadView( 'command' ), $method, $this->parseParams( $docblock ) )
+                sprintf( $this->loadView( 'command' ), $method, $params ? sprintf( ', array(%s)', $params ) : '' )
             );
         }
         

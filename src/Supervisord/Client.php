@@ -47,7 +47,7 @@ class Client
      */
     public function clearAllProcessLogs()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.clearAllProcessLogs', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.clearAllProcessLogs' ) )->getData();
     }
 
     /**
@@ -60,7 +60,7 @@ class Client
      */
     public function clearLog()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.clearLog', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.clearLog' ) )->getData();
     }
 
     /**
@@ -103,7 +103,7 @@ class Client
      */
     public function getAPIVersion()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.getAPIVersion', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.getAPIVersion' ) )->getData();
     }
 
     /**
@@ -117,7 +117,7 @@ class Client
      */
     public function getAllConfigInfo()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.getAllConfigInfo', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.getAllConfigInfo' ) )->getData();
     }
 
     /**
@@ -130,7 +130,7 @@ class Client
      */
     public function getAllProcessInfo()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.getAllProcessInfo', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.getAllProcessInfo' ) )->getData();
     }
 
     /**
@@ -143,7 +143,7 @@ class Client
      */
     public function getIdentification()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.getIdentification', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.getIdentification' ) )->getData();
     }
 
     /**
@@ -156,7 +156,7 @@ class Client
      */
     public function getPID()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.getPID', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.getPID' ) )->getData();
     }
 
     /**
@@ -183,7 +183,7 @@ class Client
      */
     public function getState()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.getState', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.getState' ) )->getData();
     }
 
     /**
@@ -196,7 +196,7 @@ class Client
      */
     public function getSupervisorVersion()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.getSupervisorVersion', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.getSupervisorVersion' ) )->getData();
     }
 
     /**
@@ -209,7 +209,7 @@ class Client
      */
     public function getVersion()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.getVersion', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.getVersion' ) )->getData();
     }
 
     /**
@@ -301,7 +301,7 @@ class Client
      */
     public function reloadConfig()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.reloadConfig', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.reloadConfig' ) )->getData();
     }
 
     /**
@@ -328,7 +328,7 @@ class Client
      */
     public function restart()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.restart', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.restart' ) )->getData();
     }
 
     /**
@@ -378,7 +378,7 @@ class Client
      */
     public function shutdown()
     {
-        return $this->conn->call( new XmlRpc( 'supervisor.shutdown', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'supervisor.shutdown' ) )->getData();
     }
 
     /**
@@ -561,7 +561,7 @@ class Client
      */
     public function listMethods()
     {
-        return $this->conn->call( new XmlRpc( 'system.listMethods', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'system.listMethods' ) )->getData();
     }
 
     /**
@@ -658,7 +658,7 @@ class Client
      */
     public function getTwiddlerAPIVersion()
     {
-        return $this->conn->call( new XmlRpc( 'twiddler.getAPIVersion', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'twiddler.getAPIVersion' ) )->getData();
     }
 
     /**
@@ -671,7 +671,7 @@ class Client
      */
     public function getGroupNames()
     {
-        return $this->conn->call( new XmlRpc( 'twiddler.getGroupNames', array() ) )->getData();
+        return $this->conn->call( new XmlRpc( 'twiddler.getGroupNames' ) )->getData();
     }
 
     /**
