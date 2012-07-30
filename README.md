@@ -1,11 +1,18 @@
 PHP front-end for Supervisor daemon manager
 ========================================================================
 
-This library provides a PHP interface to control a running Supervisord server.
-You can connect via a TCP or UNIX socket connection.
+This library provides a basic PHP interface to connect to a running Supervisor server via a TCP or UNIX socket.
+
+Supervisor allows you to manage daemon processes, you can:
+-   Group Processes
+-   Start + Stop Processes & Process Groups
+-   Tail stdout and stderr
+-   Send stdin
+-   Read process logs
 
 The PHP API matches the Supervisor XMLRPC API as closely as possible and therefore
 is not the ideal PHP interface for process management.
+
 
 If you are looking for a cleaner PHP OOP interface see https://github.com/vize/Visor
 
