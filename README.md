@@ -10,6 +10,10 @@ Install
 Example Usage
 -------------
 
+    use \Supervisord\Connection\Stream;
+    use \Supervisord\Connection\StreamConnection;
+    use \Supervisord\Connection\StreamException;
+
     /** @see example.php */
 
     // Connect to server
