@@ -29,6 +29,7 @@ class Client
             $docblock = array_map( 'trim', $docblock );
             $docblock = array_map( function( $a ){ return "     * " . $a; }, $docblock );
             $docblock = implode( "\n", $docblock );
+            $docblock = preg_replace( '/(@return|@param) (struct)/', '$1 array', $docblock );
 
             $php .= sprintf( $this->loadView( 'function' ),
                 $method,
@@ -51,7 +52,7 @@ class Client
 
             foreach( $matches[ 'name' ] as $k => $name )
             {
-                if( true === $typehint && preg_match( '/(array|struct)/', $matches[ 'type' ][ $k ] ) )
+                if( true === $typehint && 'array' === $matches[ 'type' ][ $k ] )
                 {
                     $typehinting = 'array ';
                 }

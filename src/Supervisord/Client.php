@@ -165,7 +165,7 @@ class Client
      * Get info about a process named name
      * 
      * @param string name The name of the process (or 'group:name')
-     * @return struct result     A structure containing data about the process
+     * @return array result     A structure containing data about the process
      * 
      */
     public function getProcessInfo( $name )
@@ -178,7 +178,7 @@ class Client
      * 
      * Return current state of supervisord as a struct
      * 
-     * @return struct A struct with keys string statecode, int statename
+     * @return array A struct with keys string statecode, int statename
      * 
      */
     public function getState()
@@ -387,7 +387,7 @@ class Client
      * Start all processes listed in the configuration file
      * 
      * @param boolean wait Wait for each process to be fully started
-     * @return struct result     A structure containing start statuses
+     * @return array result     A structure containing start statuses
      * 
      */
     public function startAllProcesses( $wait )
@@ -418,7 +418,7 @@ class Client
      * 
      * @param string name        The group name
      * @param boolean wait       Wait for each process to be fully started
-     * @return struct result     A structure containing start statuses
+     * @return array result     A structure containing start statuses
      * 
      */
     public function startProcessGroup( $name, $wait )
@@ -639,7 +639,7 @@ class Client
      * 
      * @param string  group_name       Name of an existing process group
      * @param string  program_name     Name of the new process in the process table
-     * @param struct  program_options  Program options, same as in supervisord.conf
+     * @param array  program_options  Program options, same as in supervisord.conf
      * @return boolean                 Always True unless error
      * 
      */
