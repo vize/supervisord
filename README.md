@@ -82,6 +82,11 @@ Travis CI
 
 ![travis-ci](https://secure.travis-ci.org/vize/supervisord.png?branch=master)
 
+Regenerate the client library after installing RPC extensions
+-------------------------------------------------------------
+
+    php reflect.php
+
 License
 ------------------------
 
