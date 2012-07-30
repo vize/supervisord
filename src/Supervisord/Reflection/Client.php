@@ -3,6 +3,7 @@
 namespace Supervisord\Reflection;
 
 use \Supervisord\Connection;
+use \Supervisord\Connection\Request\XmlRpc;
 
 /**
  * Client class generator
@@ -11,21 +12,22 @@ use \Supervisord\Connection;
  */
 class Client
 {
-    private $client;
+    private $conn;
     
-    public function __construct( \Supervisord\Client $client )
+    public function __construct( Connection $connection )
     {
-        $this->client = $client;
+        $this->conn = $connection;
     }
     
     public function generatePhpClass()
     {
         $php = '';
         
-        foreach( $this->client->listMethods() as $method )
+        foreach( $this->conn->call( new XmlRpc( 'system.listMethods' ) )->getData() as $method )
         {
-            $docblock = $this->client->methodHelp( $method );
-            $docblock = explode( "\n", $docblock );
+            $methodHelp = $this->conn->call( new XmlRpc( 'system.methodHelp', array( $method ) ) )->getData();
+            
+            $docblock = explode( "\n", $methodHelp );
             $docblock = array_map( 'trim', $docblock );
             $docblock = array_map( function( $a ){ return "     * " . $a; }, $docblock );
             $docblock = implode( "\n", $docblock );
