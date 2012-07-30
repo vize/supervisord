@@ -4,8 +4,7 @@ PHP front-end for Supervisor daemon manager
 Install
 --------
 
-    echo '[Installing Supervisord]' && sh install.sh
-    echo '[Installing Composer]' && curl -s http://getcomposer.org/installer | php && php composer.phar install
+    sh install.sh
 
 Example Usage
 -------------
