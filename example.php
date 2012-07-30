@@ -10,13 +10,13 @@ require_once sprintf( '%s/vendor/autoload.php', __DIR__ );
 
 // Connect to server
 try {
-    $stream = new Stream( '127.0.0.1:9001' );
+    $stream = new Stream( '127.0.0.1:9900' );
     $connection = new StreamConnection( $stream );
 }
 
 // Connection Error
 catch( StreamException $e ) {
-    die( "Can't connect to server at 127.0.0.1:9001\n" );
+    die( "Can't connect to server at 127.0.0.1:9900\n" );
 }
 
 try

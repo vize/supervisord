@@ -8,7 +8,7 @@ use \Supervisord\Connection\StreamConnection;
 
 require_once sprintf( '%s/vendor/autoload.php', __DIR__ );
  
-$connection = new StreamConnection( new Stream( '127.0.0.1:9001' ) );
+$connection = new StreamConnection( new Stream( '127.0.0.1:9900' ) );
 $reflector  = new Reflection\Client( $connection );
 
 echo $reflector->generatePhpClass();
