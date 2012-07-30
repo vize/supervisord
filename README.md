@@ -13,7 +13,17 @@ Example Usage
     /** @see example.php */
 
     // Connect to server
-    $connection = new StreamConnection( new Stream( '127.0.0.1:9001' ) );
+    try {
+        $stream = new Stream( '127.0.0.1:9001' );
+        $connection = new StreamConnection( $stream );
+    }
+
+    // Connection Error
+    catch( StreamException $e ) {
+        die( "Can't connect to server at 127.0.0.1:9001\n" );
+    }
+
+    // Create client
     $client = new Client( $connection );
     
     // Add a group

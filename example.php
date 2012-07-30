@@ -4,13 +4,24 @@ namespace Supervisord;
 
 use \Supervisord\Connection\Stream;
 use \Supervisord\Connection\StreamConnection;
+use \Supervisord\Connection\StreamException;
 
 require_once sprintf( '%s/vendor/autoload.php', __DIR__ );
 
+// Connect to server
+try {
+    $stream = new Stream( '127.0.0.1:9001' );
+    $connection = new StreamConnection( $stream );
+}
+
+// Connection Error
+catch( StreamException $e ) {
+    die( "Can't connect to server at 127.0.0.1:9001\n" );
+}
+
 try
 {
-    // Connect to server
-    $connection = new StreamConnection( new Stream( '127.0.0.1:9001' ) );
+    // Create client
     $client = new Client( $connection );
     
     // Output header

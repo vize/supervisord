@@ -13,6 +13,7 @@ interface Connection
     const SHUTDOWN_STATE = 6;
     const BAD_NAME = 10;
     const NOT_RUNNING = 70;
+    const CONNECTION_REFUSED = 111;
     const SUPER_READ_NO_FILE = 1000;
     const SUPER_READ_BAD_ARGUMENTS = 1001;
     const SUPER_CLEAR_FAILED = 1010;
