@@ -8,11 +8,11 @@ class Stream
     
     public function __construct( $dsn )
     {
-        $this->sock = stream_socket_client( $dsn, $errno, $errstr );
+        $this->sock = @stream_socket_client( $dsn, $errno, $errstr );
         
         if( !$this->sock )
         {
-            throw new SocketException( $errstr, $errno );
+            throw new StreamException( $errstr, $errno );
         }
     }
     
