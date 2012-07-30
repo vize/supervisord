@@ -14,7 +14,7 @@ The PHP API matches the Supervisor XMLRPC API as closely as possible and therefo
 is not the ideal PHP interface for process management.
 
 
-If you are looking for a cleaner PHP OOP interface see https://github.com/vize/Visor
+If you are looking for a cleaner PHP OOP interface based on this library, see https://github.com/vize/Visor
 
 Install
 --------
