@@ -10,7 +10,7 @@ Supervisor allows you to manage daemon processes, you can:
 -   Send stdin
 -   Read process logs
 
-The PHP API matches the Supervisor XMLRPC API as closely as possible and therefore
+The PHP API matches the Supervisor XML-RPC API as closely as possible and therefore
 is not the ideal PHP interface for process management.
 
 
