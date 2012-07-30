@@ -1,0 +1,1 @@
+        return $this->conn->call( new XmlRpc( '%s', array(%s) ) )->getData();

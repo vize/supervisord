@@ -26,6 +26,16 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $this->server->stop();
     }
     
+    public function testSomething()
+    {
+        $transport = new Stream( $this->config['inet_http_server']['port'] );
+        $connection = new StreamConnection( $transport );
+        
+        $reflector = new \Supervisord\Reflect\Client( $connection );
+        
+        echo $reflector->generatePhpClass();
+    }
+    
     public function testInetConnection_Stream()
     {
         if( !isset( $this->config['inet_http_server'], $this->config['inet_http_server']['port'] ) )

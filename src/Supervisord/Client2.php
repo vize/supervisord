@@ -656,7 +656,7 @@ class Client
      * @return int version version id
      * 
      */
-    public function getTwiddlerAPIVersion()
+    public function getAPIVersion()
     {
         return $this->conn->call( new XmlRpc( 'twiddler.getAPIVersion', array() ) )->getData();
     }
