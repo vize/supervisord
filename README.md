@@ -85,8 +85,8 @@ $client->stopProcessGroup( 'log', 'false' );
 // Add a group
 $client->removeProcessGroup( 'log' );
 
-    // Reset server
-    $client->reloadConfig();
+// Reset server
+$client->reloadConfig();
 ```
 
 Tests
