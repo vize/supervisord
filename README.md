@@ -19,76 +19,82 @@ If you are looking for a cleaner PHP OOP interface based on this library, see ht
 Install
 --------
 
-    sh install.sh
+```bash
+sh install.sh
+```
 
 Example Usage
 -------------
 
-    use \Supervisord\Connection\Stream;
-    use \Supervisord\Connection\StreamConnection;
-    use \Supervisord\Connection\StreamException;
+```php
+use \Supervisord\Connection\Stream;
+use \Supervisord\Connection\StreamConnection;
+use \Supervisord\Connection\StreamException;
 
-    /** @see example.php */
+/** @see example.php */
 
-    // Connect to server
-    try {
-        $stream = new Stream( '127.0.0.1:9900' );
-        $connection = new StreamConnection( $stream );
-    }
+// Connect to server
+try {
+    $stream = new Stream( '127.0.0.1:9900' );
+    $connection = new StreamConnection( $stream );
+}
 
-    // Connection Error
-    catch( StreamException $e ) {
-        die( "Can't connect to server at 127.0.0.1:9900\n" );
-    }
+// Connection Error
+catch( StreamException $e ) {
+    die( "Can't connect to server at 127.0.0.1:9900\n" );
+}
 
-    // Create client
-    $client = new Client( $connection );
-    
-    // Add a group
-    $client->addGroup( 'log', 999 );
+// Create client
+$client = new Client( $connection );
 
-    // Create a new process
-    $client->addProgramToGroup( 'log', 'syslog01', array(
-        'command' => 'tail -f /var/log/syslog',
-        'autostart' => 'false',
-        'autorestart' => 'true',
-        'startsecs' => 1,
-    ));
-    
-    // Start the process
-    $client->startProcess( 'log:syslog01', 'false' );
-    
-    // Start the whole group
-    $client->startProcessGroup( 'log', 'false' );
-    
-    // Output single process info
-    printf( "Single Process:\n%s\n", print_r( $client->getProcessInfo( 'log:syslog01' ), true ) );
-    
-    // Output process stdout
-    printf( "StdOut:\n%s\n", print_r( $client->tailProcessStdoutLog( 'log:syslog01', 0, 1024 ), true ) );
-    
-    // Output process stderr
-    printf( "StdErr:\n%s\n", print_r( $client->tailProcessStderrLog( 'log:syslog01', 0, 1024 ), true ) );
-    
-    // Send process stdin
-    $client->sendProcessStdin( 'log:syslog01', 'hello world!' );
-    
-    // Stop the process
-    $client->stopProcess( 'log:syslog01', 'false' );
-    
-    // Stop the whole group
-    $client->stopProcessGroup( 'log', 'false' );
-    
-    // Add a group
-    $client->removeProcessGroup( 'log' );
-    
+// Add a group
+$client->addGroup( 'log', 999 );
+
+// Create a new process
+$client->addProgramToGroup( 'log', 'syslog01', array(
+    'command' => 'tail -f /var/log/syslog',
+    'autostart' => 'false',
+    'autorestart' => 'true',
+    'startsecs' => 1,
+));
+
+// Start the process
+$client->startProcess( 'log:syslog01', 'false' );
+
+// Start the whole group
+$client->startProcessGroup( 'log', 'false' );
+
+// Output single process info
+printf( "Single Process:\n%s\n", print_r( $client->getProcessInfo( 'log:syslog01' ), true ) );
+
+// Output process stdout
+printf( "StdOut:\n%s\n", print_r( $client->tailProcessStdoutLog( 'log:syslog01', 0, 1024 ), true ) );
+
+// Output process stderr
+printf( "StdErr:\n%s\n", print_r( $client->tailProcessStderrLog( 'log:syslog01', 0, 1024 ), true ) );
+
+// Send process stdin
+$client->sendProcessStdin( 'log:syslog01', 'hello world!' );
+
+// Stop the process
+$client->stopProcess( 'log:syslog01', 'false' );
+
+// Stop the whole group
+$client->stopProcessGroup( 'log', 'false' );
+
+// Add a group
+$client->removeProcessGroup( 'log' );
+
     // Reset server
     $client->reloadConfig();
+```
 
 Tests
 --------
 
-    phpunit
+```bash
+phpunit
+```
 
 Travis CI
 ---------
@@ -100,7 +106,9 @@ Travis CI
 Regenerate the client library after installing RPC extensions
 -------------------------------------------------------------
 
-    php reflect.php
+```bash
+php reflect.php
+```
 
 License
 ------------------------
