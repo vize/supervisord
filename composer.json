@@ -1,11 +1,11 @@
 {
-    "name": "vize/supervisord",
+    "name": "missinglink/supervisord",
     "version": "0.0.1",
     "type": "library", 
     "description": "PHP frontend for Supervisord daemon manager", 
     "keywords": ["Daemon", "Manager", "Supervisord"], 
-    "website": "https://github.com/vize/supervisord",
-    "repository": "https://github.com/vize/supervisord",
+    "website": "https://github.com/missinglink/supervisord",
+    "repository": "https://github.com/missinglink/supervisord",
     
     "authors": [
         {

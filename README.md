@@ -14,7 +14,7 @@ The PHP API matches the Supervisor XML-RPC API as closely as possible and theref
 is not the ideal PHP interface for process management.
 
 
-If you are looking for a cleaner PHP OOP interface based on this library, see https://github.com/vize/Visor
+Feel free to extend, or build higher level abstractions on top of this library.
 
 Install
 --------
@@ -99,9 +99,9 @@ phpunit
 Travis CI
 ---------
 
-![travis-ci](http://cdn-ak.favicon.st-hatena.com/?url=http%3A%2F%2Fabout.travis-ci.org%2F)&nbsp;http://travis-ci.org/#!/vize/supervisord
+![travis-ci](http://cdn-ak.favicon.st-hatena.com/?url=http%3A%2F%2Fabout.travis-ci.org%2F)&nbsp;http://travis-ci.org/#!/missinglink/supervisord
 
-![travis-ci](https://secure.travis-ci.org/vize/supervisord.png?branch=master)
+![travis-ci](https://secure.travis-ci.org/missinglink/supervisord.png?branch=master)
 
 Regenerate the client library after installing RPC extensions
 -------------------------------------------------------------
